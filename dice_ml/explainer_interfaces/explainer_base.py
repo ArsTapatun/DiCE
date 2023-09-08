@@ -168,6 +168,7 @@ class ExplainerBase(ABC):
                 posthoc_sparsity_param=posthoc_sparsity_param,
                 posthoc_sparsity_algorithm=posthoc_sparsity_algorithm,
                 verbose=verbose,
+                sparsity_weight=sparsity_weight,
                 **kwargs)
             cf_examples_arr.append(res)
         self._check_any_counterfactuals_computed(cf_examples_arr=cf_examples_arr)
