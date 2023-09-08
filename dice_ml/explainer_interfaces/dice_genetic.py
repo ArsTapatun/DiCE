@@ -40,11 +40,14 @@ class DiceGenetic(ExplainerBase):
     def update_hyperparameters(self, proximity_weight, sparsity_weight,
                                diversity_weight, categorical_penalty):
         """Update hyperparameters of the loss function"""
-
+        print("updating hyperparameters")
+        print(self.sparsity_weight)
+        print(sparsity_weight)
         self.proximity_weight = proximity_weight
         self.sparsity_weight = sparsity_weight
         self.diversity_weight = diversity_weight
         self.categorical_penalty = categorical_penalty
+        print(self.sparsity_weight)
 
     def do_loss_initializations(self, yloss_type, diversity_loss_type, feature_weights,
                                 encoding='one-hot'):
@@ -196,8 +199,10 @@ class DiceGenetic(ExplainerBase):
                 query_instance, query_instance_df_dummies, verbose)
         else:
             self.total_CFs = total_CFs
+        print(123)
         self.do_loss_initializations(yloss_type, diversity_loss_type, feature_weights, encoding='label')
         self.update_hyperparameters(proximity_weight, sparsity_weight, diversity_weight, categorical_penalty)
+        print(self.sparsity_weight)
 
     def _generate_counterfactuals(self, query_instance, total_CFs, initialization="kdtree",
                                   desired_range=None, desired_class="opposite", proximity_weight=0.2,
@@ -284,12 +289,15 @@ class DiceGenetic(ExplainerBase):
         for col in self.data_interface.get_all_dummy_colnames():
             if col not in query_instance_df_dummies.columns:
                 query_instance_df_dummies[col] = 0
-
+        print("ffff")
+        print(sparsity_weight)
+        print(self.sparsity_weight)
         self.do_param_initializations(total_CFs, initialization, desired_range, desired_class, query_instance,
                                       query_instance_df_dummies, algorithm, features_to_vary, permitted_range,
                                       yloss_type, diversity_loss_type, feature_weights, proximity_weight,
                                       sparsity_weight, diversity_weight, categorical_penalty, verbose)
-
+        print(self.sparsity_weight)
+        print("FFFF")
         query_instance_df = self.find_counterfactuals(query_instance, desired_range, desired_class, features_to_vary,
                                                       maxiterations, thresh, verbose)
 
