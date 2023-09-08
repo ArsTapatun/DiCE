@@ -41,7 +41,6 @@ class DiceGenetic(ExplainerBase):
                                diversity_weight, categorical_penalty):
         """Update hyperparameters of the loss function"""
         print("updating hyperparameters")
-        print(self.sparsity_weight)
         print(sparsity_weight)
         self.proximity_weight = proximity_weight
         self.sparsity_weight = sparsity_weight
@@ -291,7 +290,6 @@ class DiceGenetic(ExplainerBase):
                 query_instance_df_dummies[col] = 0
         print("ffff")
         print(sparsity_weight)
-        print(self.sparsity_weight)
         self.do_param_initializations(total_CFs, initialization, desired_range, desired_class, query_instance,
                                       query_instance_df_dummies, algorithm, features_to_vary, permitted_range,
                                       yloss_type, diversity_loss_type, feature_weights, proximity_weight,
