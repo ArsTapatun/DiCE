@@ -386,6 +386,8 @@ class DiceGenetic(ExplainerBase):
 
     def compute_loss(self, cfs, desired_range, desired_class):
         """Computes the overall loss"""
+        print(f'{self.sparsity_weight=}')
+        print(f'{self.proximity_weight=}')
         self.yloss = self.compute_yloss(cfs, desired_range, desired_class)
         self.proximity_loss = self.compute_proximity_loss(cfs, self.query_instance_normalized) \
             if self.proximity_weight > 0 else 0.0
@@ -394,6 +396,7 @@ class DiceGenetic(ExplainerBase):
                                         self.sparsity_weight * self.sparsity_loss), (-1, 1))
         index = np.reshape(np.arange(len(cfs)), (-1, 1))
         self.loss = np.concatenate([index, self.loss], axis=1)
+        print(f'{self.loss=}')
         return self.loss
 
     def mate(self, k1, k2, features_to_vary, query_instance):
